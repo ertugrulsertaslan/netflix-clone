@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
+
+import { VscTriangleDown } from "react-icons/vsc";
 import { BsBell, BsChevronDown, BsSearch } from "react-icons/bs";
 import NavbarItem from "../navbarItem";
 import MobileMenu from "../mobileMenu";
-import { useState } from "react";
+
 import ProfileSettingMenu from "../profileSettingMenu";
+
 export default function Navbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileSetting, setShowProfileSetting] = useState(false);
@@ -14,11 +18,11 @@ export default function Navbar() {
   const toogleProfileSetting = () => {
     setShowProfileSetting((current) => !current);
   };
-  console.log(showProfileSetting);
+
   return (
     <>
-      <nav className="w-full fixed z-40">
-        <div className="px-4 md:px-12 py-3 flex flex-row items-center transition duration-500 bg-zinc-900 bg-opacity-90">
+      <nav className="w-full fixed z-10">
+        <div className="px-4 md:px-12 py-3 flex flex-row items-center transition duration-500 bg-zinc-900  bg-opacity-40">
           <img className="h-5 lg:h-12" src="/images/logo.png" alt="Logo" />
           <div className="flex-row ml-8 gap-7 hidden lg:flex">
             <NavbarItem label="Home" />
@@ -47,7 +51,7 @@ export default function Navbar() {
               <div className="w-8 h-8 lg:w-10 lg-h-10 rounded-md overflow-hidden">
                 <img src="/images/default-blue.png" alt="" />
               </div>
-              <BsChevronDown
+              <VscTriangleDown
                 className="text-white transition"
                 onClick={toogleProfileSetting}
               />
