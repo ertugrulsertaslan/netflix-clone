@@ -22,7 +22,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="w-full fixed z-10">
-        <div className="px-4 md:px-12 py-3 flex flex-row items-center transition duration-500 bg-zinc-900  bg-opacity-40">
+        <div className="px-4 md:px-12 py-2 md:py-3 flex flex-row items-center transition duration-500 bg-zinc-900  bg-opacity-40">
           <img className="h-5 lg:h-12" src="/images/logo.png" alt="Logo" />
           <div className="flex-row ml-8 gap-7 hidden lg:flex">
             <NavbarItem label="Home" />
