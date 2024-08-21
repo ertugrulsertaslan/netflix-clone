@@ -3,7 +3,9 @@ import axios from "axios";
 import Input from "@/components/input";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +37,7 @@ export default function Login() {
         redirect: false,
         callbackUrl: "/",
       });
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
