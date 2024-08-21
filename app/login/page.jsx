@@ -20,15 +20,23 @@ export default function Login() {
   };
   const login = async () => {
     try {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
         callbackUrl: "/",
       });
-      router.push("/");
+      if (result?.error) {
+        console.error(result.error);
+        router.push("/login");
+      } else if (result?.url) {
+        router.push(result.url);
+      } else {
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
+      router.push("/login");
     }
   };
 
