@@ -8,8 +8,8 @@ import NavbarItem from "../navbarItem";
 import MobileMenu from "../mobileMenu";
 
 import ProfileSettingMenu from "../profileSettingMenu";
-import LogoutButton from "@/components/LogoutButton";
-export default function Navbar() {
+
+export default function Navbar({ user }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileSetting, setShowProfileSetting] = useState(false);
   const toogleMobileMenu = () => {
@@ -21,7 +21,6 @@ export default function Navbar() {
 
   return (
     <>
-      <LogoutButton />
       <nav className="w-full fixed z-10">
         <div className="px-4 md:px-12 py-2 md:py-3 flex flex-row items-center transition duration-500 bg-zinc-900  bg-opacity-40">
           <img className="h-5 lg:h-12" src="/images/logo.png" alt="Logo" />
@@ -56,7 +55,7 @@ export default function Navbar() {
                 className="text-white transition"
                 onClick={toogleProfileSetting}
               />
-              <ProfileSettingMenu visible={showProfileSetting} />
+              <ProfileSettingMenu user={user} visible={showProfileSetting} />
             </div>
           </div>
         </div>

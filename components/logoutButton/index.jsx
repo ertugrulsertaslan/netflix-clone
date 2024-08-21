@@ -9,12 +9,12 @@ const LogoutButton = () => {
   };
 
   return (
-    <button
+    <div
       onClick={handleLogout}
-      className="h-10 w-full text-white bg-red-500"
+      className="px-3 flex justify-center text-center hover:underline items-center border-t-2 border-gray-500"
     >
-      Logout
-    </button>
+      <p className="mt-4">Sign out of Netflix</p>
+    </div>
   );
 };
 
