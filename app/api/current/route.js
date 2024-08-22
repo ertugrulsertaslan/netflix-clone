@@ -3,7 +3,6 @@ import serverAuth from "@/lib/serverAuth";
 export async function GET(req) {
   try {
     const { currentUser } = await serverAuth(req);
-    //console.log("Current User in API:", currentUser);
     return new Response(JSON.stringify(currentUser), {
       status: 200,
       headers: { "Content-Type": "application/json" },
