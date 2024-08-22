@@ -2,7 +2,7 @@ import React from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { GrLike } from "react-icons/gr";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { FiPlus } from "react-icons/fi";
+import FavoriteButton from "../favoriteButton.jsx";
 export default function MovieCard({ data }) {
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
@@ -34,9 +34,7 @@ export default function MovieCard({ data }) {
               <div className="cursor-pointer w-6 h-6 lg:w-7 lg:h-7 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300">
                 <BsFillPlayFill size={25} />
               </div>
-              <div className="cursor-pointer w-6 h-6 lg:w-7 lg:h-7 border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700">
-                <FiPlus size={20} />
-              </div>
+              <FavoriteButton movieId={data?.id} />
               <div className="cursor-pointer w-6 h-6 lg:w-7 lg:h-7 border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700">
                 <GrLike size={13} />
               </div>
