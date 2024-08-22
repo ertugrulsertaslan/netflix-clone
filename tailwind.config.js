@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        74: "19rem",
+      },
       animation: {
         "fade-out": "fadeOut 2s ease-out forwards",
         collapse: "collapse 2s ease-out forwards",
