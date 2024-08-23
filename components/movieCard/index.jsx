@@ -2,8 +2,16 @@ import React from "react";
 import { GrLike } from "react-icons/gr";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import FavoriteButton from "../favoriteButton.jsx";
-import PlayButton from "../playButton/index.jsx";
+import { BsFillPlayFill } from "react-icons/bs";
+import { useRouter } from "next/navigation";
+import useInfoModal from "@/hooks/useInfoModal.js";
+
 export default function MovieCard({ data }) {
+  const router = useRouter();
+  const { openModal } = useInfoModal();
+  const handleOpenModal = () => {
+    openModal(data?.id);
+  };
   return (
     <div className="group bg-zinc-900 col-span relative h-[16vw] md:h-[9vw]">
       <img
@@ -32,14 +40,22 @@ export default function MovieCard({ data }) {
         <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row justify-between">
             <div className="flex flex-row items-center gap-1">
-              <PlayButton movieId={data?.id} />
+              <div
+                onClick={() => router.push(`/watch/${data?.id}`)}
+                className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300"
+              >
+                <BsFillPlayFill size={35} />
+              </div>
               <FavoriteButton movieId={data?.id} />
               <div className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11  border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700">
                 <GrLike size={17} />
               </div>
             </div>
             <div>
-              <div className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11  border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700">
+              <div
+                onClick={handleOpenModal}
+                className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11  border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700"
+              >
                 <MdKeyboardArrowDown size={30} />
               </div>
             </div>

@@ -4,15 +4,18 @@ import PlayButton from "../playButton";
 import FavoriteButton from "../favoriteButton.jsx";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
-
+import VolumeButton from "../volumeButton";
 export default function InfoModal({ visible, onClose }) {
   const [isVisible, setIsVisible] = useState(!!visible);
   const { movieId } = useInfoModal();
   const { data = {} } = useMovie(movieId);
+  const [isSoundOn, setIsSoundOn] = useState(true);
   const modalRef = useRef(null);
+
   useEffect(() => {
     setIsVisible(!!visible);
   }, [visible]);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -29,15 +32,18 @@ export default function InfoModal({ visible, onClose }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isVisible]);
+
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(() => {
       onClose();
     }, [300]);
   };
+
   if (!visible) {
     return null;
   }
+
   return (
     <div className="z-50 transition duration-300 bg-black bg-opacity-80 flex justify-center items-center overflow-x-hidden overflow-y-hidden fixed inset-0">
       <div
@@ -59,7 +65,7 @@ export default function InfoModal({ visible, onClose }) {
             <video
               className="w-full brightness-[60%] object-cover h-full"
               autoPlay
-              muted
+              muted={!isSoundOn}
               loop
               poster={data?.thumbnailUrl}
               src="/videos/dark.mp4"
@@ -70,13 +76,21 @@ export default function InfoModal({ visible, onClose }) {
             >
               <AiOutlineClose className="text-white" size={20} />
             </div>
-            <div className="absolute bottom-[10%] left-10">
+            <div className="absolute bottom-[10%] left-10 w-[88%]">
               <p className="text-white text-3xl md:text-4xl h-full lg:text-5xl font-bold mb-8">
                 {data?.title}
               </p>
-              <div className="flex flex-row gap-4 items-center">
-                <PlayButton movieId={data?.id} />
-                <FavoriteButton movieId={data?.id} />
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-row gap-4 items-center">
+                  <PlayButton movieId={data?.id} />
+                  <FavoriteButton movieId={data?.id} />
+                </div>
+                <div className="flex flex-row">
+                  <VolumeButton
+                    isSoundOn={isSoundOn}
+                    setIsSoundOn={setIsSoundOn}
+                  />
+                </div>
               </div>
             </div>
           </div>
