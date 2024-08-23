@@ -38,14 +38,14 @@ export default function Navbar({ user }) {
     <>
       <nav className="w-full fixed z-10">
         <div
-          className={`px-4 md:px-7 py-1 md:py-1 flex flex-row items-center transition duration-500 ${
+          className={`px-4 md:px-12 py-1 md:py-2.5 flex flex-row items-center transition duration-500 ${
             ShowBackground ? "bg-zinc-900 bg-opacity-90" : ""
           }`}
         >
-          <img className="h-5 lg:h-7" src="/images/logo.png" alt="Logo" />
-          <div className="flex-row ml-5 gap-3 hidden lg:flex">
+          <img className="h-5 lg:h-12" src="/images/logo.png" alt="Logo" />
+          <div className="flex-row ml-5 gap-6 hidden lg:flex">
             <NavbarItem label="Home" />
-            <NavbarItem label="Tv Shows" />
+            <NavbarItem label="TV Shows" />
             <NavbarItem label="Films" />
             <NavbarItem label="New & Popular" />
             <NavbarItem label="My List" />
@@ -53,26 +53,25 @@ export default function Navbar({ user }) {
           </div>
           <div
             onClick={toogleMobileMenu}
-            className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative"
+            className="lg:hidden flex flex-row items-center gap-4 ml-8 cursor-pointer relative"
           >
-            <p className="text-white text-sm font-thin">Browse</p>
+            <p className="text-white text-[8px] ">Browse</p>
             <BsChevronDown className="text-white transition" size={12} />
             <MobileMenu visible={showMobileMenu} size={12} />
           </div>
-          <div className="flex flex-row ml-auto gap-4 items-center">
-            <div className="text-gray-200 hover:text-gray-300 cursor-pointer">
-              <BsSearch size={12} />
+          <div className="flex flex-row ml-auto gap-6 items-center">
+            <div className="text-gray-200 hover:text-gray-300 cursor-pointer text-sm md:text-xl">
+              <BsSearch />
             </div>
-            <div className="text-gray-200 hover:text-gray-300 cursor-pointer">
-              <FaRegBell size={12} />
+            <div className="text-gray-200 hover:text-gray-300 cursor-pointer text-sm md:text-xl">
+              <FaRegBell />
             </div>
             <div className="flex flex-row items-center gap-1 cursor-pointer relative">
-              <div className="w-5 h-5 lg:w-5 lg-h-5 rounded-md overflow-hidden">
+              <div className="w-5 h-5 lg:w-8 lg:h-8 rounded-md overflow-hidden">
                 <img src="/images/default-blue.png" alt="" />
               </div>
               <VscTriangleDown
-                size={8}
-                className="text-white transition"
+                className="text-white transition text-xs md:text-base"
                 onClick={toogleProfileSetting}
               />
               <ProfileSettingMenu user={user} visible={showProfileSetting} />
