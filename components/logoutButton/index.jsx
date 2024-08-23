@@ -11,7 +11,7 @@ const LogoutButton = () => {
   return (
     <div
       onClick={handleLogout}
-      className="px-3 flex justify-center text-center hover:underline items-center border-t-2 border-gray-500"
+      className="px-3 flex justify-center text-center hover:underline items-center border-t border-gray-500"
     >
       <p className="mt-4">Sign out of Netflix</p>
     </div>
