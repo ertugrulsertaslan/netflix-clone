@@ -1,9 +1,6 @@
-import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 
 const LogoutButton = () => {
-  const router = useRouter();
-
   const handleLogout = async () => {
     await signOut({ redirect: true, callbackUrl: "/login" });
   };

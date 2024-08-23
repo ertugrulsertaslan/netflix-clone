@@ -25,7 +25,7 @@ export default function BillboardText({ description }) {
       }`}
     >
       <p
-        className={`text-[8px] text-white sm:text-sm md:text-base lg:text-xl mt-0 md:mt-3 w-[80%] md:w-[70%] lg:w-[70%] xl:w-[100%] drop-shadow-xl transition-opacity duration-2000 ${
+        className={`text-[6px] text-white sm:text-sm md:text-base lg:text-xl mt-0 md:mt-3 w-[90%] md:w-[90%] lg:w-[80%] xl:w-[100%] drop-shadow-xl transition-opacity duration-2000 ${
           isVisible ? "animate-slideDown" : "opacity-0"
         }`}
       >
