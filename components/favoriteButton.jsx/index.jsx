@@ -39,9 +39,9 @@ export default function FavoriteButton({ movieId }) {
   return (
     <div
       onClick={toogleFavorites}
-      className="cursor-pointer w-6 h-6 lg:w-7 lg:h-7 border-2 text-white border-gray-500 rounded-full flex justify-center items-center transition hover:bg-neutral-700"
+      className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11 border-2 text-white border-gray-500 rounded-full flex justify-center items-center transition hover:bg-neutral-700"
     >
-      <Icon size={isFavorite ? 35 : 20} />
+      <Icon size={isFavorite ? 35 : 25} />
     </div>
   );
 }
