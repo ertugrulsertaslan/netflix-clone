@@ -1,17 +1,14 @@
 import React from "react";
-import { GrLike } from "react-icons/gr";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import FavoriteButton from "../favoriteButton.jsx";
 import { BsFillPlayFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import useInfoModal from "@/hooks/useInfoModal.js";
+import LikeButton from "../likeButton/index.jsx";
 
 export default function MovieCard({ data }) {
   const router = useRouter();
   const { openModal } = useInfoModal();
-  const handleOpenModal = () => {
-    openModal(data?.id);
-  };
   return (
     <div className="group bg-zinc-900 col-span relative h-[16vw] md:h-[9vw]">
       <img
@@ -47,13 +44,11 @@ export default function MovieCard({ data }) {
                 <BsFillPlayFill size={35} />
               </div>
               <FavoriteButton movieId={data?.id} />
-              <div className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11  border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700">
-                <GrLike size={17} />
-              </div>
+              <LikeButton />
             </div>
             <div>
               <div
-                onClick={handleOpenModal}
+                onClick={() => openModal(data?.id)}
                 className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11  border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700"
               >
                 <MdKeyboardArrowDown size={30} />

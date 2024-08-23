@@ -1,7 +1,7 @@
 import { HiOutlineSpeakerXMark } from "react-icons/hi2";
 import { HiOutlineSpeakerWave } from "react-icons/hi2";
 
-export default function VolumeButton({ setIsSoundOn, isSoundOn }) {
+export default function VolumeButton({ isSoundOn, setIsSoundOn }) {
   const Icon = isSoundOn ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
   return (
     <div

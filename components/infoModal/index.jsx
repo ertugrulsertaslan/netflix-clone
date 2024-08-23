@@ -20,7 +20,6 @@ export default function InfoModal({ visible, onClose }) {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         handleClose();
-        console.log("asdsad");
       }
     };
 

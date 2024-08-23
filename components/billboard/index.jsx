@@ -1,21 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import BillboardText from "@/components/billboardText";
 import useBillboard from "@/hooks/useBillboard";
-import { useRouter } from "next/navigation";
 import useInfoModal from "@/hooks/useInfoModal";
 import PlayButton from "../playButton";
 import VolumeButton from "../volumeButton";
 export default function Billboard() {
   const [isSoundOn, setIsSoundOn] = useState(true);
-  console.log(isSoundOn);
-  const router = useRouter();
   const { data } = useBillboard();
-  const { openModal } = useInfoModal();
+  const { openModal, isOpen } = useInfoModal();
+
   const handleOpenModal = () => {
     openModal(data?.id);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsSoundOn(false);
+    } else {
+      setIsSoundOn(true);
+    }
+  }, [isOpen]);
   return (
     <div className="relative h-[56.25vw] ">
       <video
