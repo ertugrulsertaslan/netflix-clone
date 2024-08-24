@@ -50,7 +50,7 @@ export default function Billboard() {
           </div>
         </div>
       </div>
-      <div className="absolute top-[60%] right-36">
+      <div className="absolute top-[60%] right-20 sm:right-28 md:right-32 lg:right-36">
         <VolumeButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
       </div>
     </div>
