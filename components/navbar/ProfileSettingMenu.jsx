@@ -3,7 +3,7 @@ import { PiPencil } from "react-icons/pi";
 import { FaRegFaceGrinWide } from "react-icons/fa6";
 import { FiHelpCircle } from "react-icons/fi";
 import { VscTriangleUp } from "react-icons/vsc";
-import LogoutButton from "@/components/LogoutButton";
+import LogoutButton from "@/components/navbar/LogoutButton";
 
 export default function ProfileSettingMenu({ visible, user }) {
   if (!visible) {

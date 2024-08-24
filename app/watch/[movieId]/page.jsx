@@ -1,8 +1,9 @@
 "use client";
 import { React } from "react";
-import useMovie from "@/hooks/useMovie";
 import { useRouter } from "next/navigation";
+import useMovie from "@/hooks/useMovie";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+
 export default function Watch({ params }) {
   const router = useRouter();
   const { movieId } = params;

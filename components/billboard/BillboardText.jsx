@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+
 export default function BillboardText({ description }) {
   const [isVisible, setIsVisible] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);

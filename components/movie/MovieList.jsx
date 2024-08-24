@@ -1,6 +1,6 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import MovieCard from "../movieCard";
+import MovieCard from "./MovieCard";
 export default function MovieList({ data, title }) {
   if (isEmpty(data)) {
     return null;

@@ -1,10 +1,10 @@
 import React from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import FavoriteButton from "../favoriteButton.jsx";
-import { BsFillPlayFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { BsFillPlayFill } from "react-icons/bs";
+import FavoriteButton from "@/components/buttons/FavoriteButton";
+import LikeButton from "@/components/buttons/LikeButton";
 import useInfoModal from "@/hooks/useInfoModal.js";
-import LikeButton from "../likeButton/index.jsx";
 
 export default function MovieCard({ data }) {
   const router = useRouter();

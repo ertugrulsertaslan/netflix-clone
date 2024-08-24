@@ -1,12 +1,12 @@
 import { React, useEffect, useState, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { VscTriangleDown } from "react-icons/vsc";
-import PlayButton from "../playButton";
-import FavoriteButton from "../favoriteButton.jsx";
+import PlayButton from "@/components/buttons/PlayButton";
+import FavoriteButton from "@/components/buttons/FavoriteButton";
+import LikeButton from "@/components/buttons/LikeButton";
+import VolumeButton from "@/components/buttons/VolumeButton";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
-import VolumeButton from "../volumeButton";
-import LikeButton from "../likeButton";
 
 export default function InfoModal({ visible, onClose }) {
   const [isVisible, setIsVisible] = useState(!!visible);

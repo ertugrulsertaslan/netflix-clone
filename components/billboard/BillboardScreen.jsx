@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import BillboardText from "@/components/billboardText";
+import BillboardText from "@/components/billboard/BillboardText";
+import PlayButton from "@/components/buttons/PlayButton";
+import VolumeButton from "@/components/buttons/VolumeButton";
 import useBillboard from "@/hooks/useBillboard";
 import useInfoModal from "@/hooks/useInfoModal";
-import PlayButton from "../playButton";
-import VolumeButton from "../volumeButton";
+
 export default function Billboard() {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const { data } = useBillboard();

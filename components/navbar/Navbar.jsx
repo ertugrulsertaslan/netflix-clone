@@ -1,12 +1,11 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import { BsChevronDown, BsSearch } from "react-icons/bs";
-import NavbarItem from "../navbarItem";
-import MobileMenu from "../mobileMenu";
-import ProfileSettingMenu from "../profileSettingMenu";
+import NavbarItem from "@/components/navbar/NavbarItem";
+import MobileMenu from "@/components/navbar/MobileMenu";
+import ProfileSettingMenu from "@/components/navbar/ProfileSettingMenu";
 
 const TOP_OFFSET = 5;
 

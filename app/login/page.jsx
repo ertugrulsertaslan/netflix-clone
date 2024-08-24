@@ -1,11 +1,12 @@
 "use client";
 import axios from "axios";
-import Input from "@/components/input";
 import { useState } from "react";
+import Input from "@/components/input/Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
