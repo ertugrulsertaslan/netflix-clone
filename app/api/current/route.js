@@ -5,13 +5,11 @@ export async function GET(req) {
     const { currentUser } = await serverAuth(req);
     return new Response(JSON.stringify(currentUser), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Error in API route:", error);
     return new Response(error.message, {
       status: 500,
-      headers: { "Content-Type": "text/plain" },
     });
   }
 }

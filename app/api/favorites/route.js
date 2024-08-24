@@ -1,8 +1,8 @@
-import { without } from "lodash";
 import serverAuth from "@/lib/serverAuth";
 import prismadb from "@/lib/prismadb";
+import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function GET(req) {
   try {
     const { currentUser } = await serverAuth(req);
 
@@ -18,6 +18,9 @@ export async function GET(req, res) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    return res.status(400).end();
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 400 }
+    );
   }
 }

@@ -1,7 +1,8 @@
 import prismadb from "@/lib/prismadb";
 import serverAuth from "@/lib/serverAuth";
+import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function GET(req) {
   try {
     await serverAuth(req);
     const movieCount = await prismadb.movie.count();
@@ -15,6 +16,9 @@ export async function GET(req, res) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    return res.status(400).end();
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 400 }
+    );
   }
 }
