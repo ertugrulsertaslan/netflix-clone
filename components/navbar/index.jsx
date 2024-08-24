@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
-import { BsBell, BsChevronDown, BsSearch } from "react-icons/bs";
+import { BsChevronDown, BsSearch } from "react-icons/bs";
 import NavbarItem from "../navbarItem";
 import MobileMenu from "../mobileMenu";
-
 import ProfileSettingMenu from "../profileSettingMenu";
+
 const TOP_OFFSET = 5;
+
 export default function Navbar({ user }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileSetting, setShowProfileSetting] = useState(false);

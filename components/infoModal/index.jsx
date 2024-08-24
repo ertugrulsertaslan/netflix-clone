@@ -150,7 +150,7 @@ export default function InfoModal({ visible, onClose }) {
               <img
                 src={data?.thumbnailUrl}
                 alt=""
-                className="w-30 h-20 rounded-md"
+                className="w-40 h-20 rounded-md"
               />
               <div className="flex">
                 <div className="w-full sm:w-11/12">
@@ -169,7 +169,7 @@ export default function InfoModal({ visible, onClose }) {
               <img
                 src={data?.thumbnailUrl}
                 alt=""
-                className="w-30 h-20 rounded-md"
+                className="w-40 h-20 rounded-md"
               />
               <div className="flex">
                 <div className="w-11/12">
@@ -188,7 +188,7 @@ export default function InfoModal({ visible, onClose }) {
               <img
                 src={data?.thumbnailUrl}
                 alt=""
-                className="w-30 h-20 rounded-md"
+                className="w-40 h-20 rounded-md"
               />
               <div className="flex">
                 <div className="w-11/12">

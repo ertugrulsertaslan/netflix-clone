@@ -22,10 +22,12 @@ export default function MovieCard({ data }) {
         absolute top-0
         transition duration-200
         z-10 invisible sm:visible
-        delay-300 w-96 scale-0
+        delay-300 sm:w-74 md:w-56 lg:w-74 xl:80 2xl:w-96 scale-0
         group-hover:scale-110
+       
+    
         group-hover:-translate-y-[6vw]
-        last:group-hover:-translate-x-[1vw]
+        md:last:group-hover:-translate-x-[1vw]
         group-hover:opacity-100
       "
       >
@@ -39,9 +41,9 @@ export default function MovieCard({ data }) {
             <div className="flex flex-row items-center gap-1">
               <div
                 onClick={() => router.push(`/watch/${data?.id}`)}
-                className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300"
+                className="cursor-pointer w-6 h-6 md:w-8 md:h-8 lg:w-11 lg:h-11 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 md:text-3xl lg:text-4xl"
               >
-                <BsFillPlayFill size={35} />
+                <BsFillPlayFill />
               </div>
               <FavoriteButton movieId={data?.id} />
               <LikeButton />
@@ -49,23 +51,25 @@ export default function MovieCard({ data }) {
             <div>
               <div
                 onClick={() => openModal(data?.id)}
-                className="cursor-pointer w-6 h-6 lg:w-11 lg:h-11  border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700"
+                className="cursor-pointer w-6 h-6 md:w-8 md:h-8 lg:w-11 lg:h-11 border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700 md:text-2xl lg:text-4xl"
               >
-                <MdKeyboardArrowDown size={30} />
+                <MdKeyboardArrowDown />
               </div>
             </div>
           </div>
           <div className="flex flex-row items-center gap-1 mt-5">
-            <div className="w-10 h-5 border border-neutral-500 flex justify-center">
-              <p className="text-sm text-neutral-400">18+</p>
+            <div className="md:w-7 lg:w-10 lg:h-5 border border-neutral-500 flex justify-center">
+              <p className="text-xs lg:text-sm text-neutral-400">18+</p>
             </div>
-            <p className="text-base text-neutral-400">3 Season</p>
+            <p className="text-xs lg:text-base text-neutral-400">3 Season</p>
             <div className="w-7 h-4.5 border border-neutral-500 flex justify-center rounded-sm">
-              <p className="text-xs text-neutral-400">HD</p>
+              <p className="text-xs lg:text-sm text-neutral-400">HD</p>
             </div>
           </div>
           <div className="flex flex-row items-center gap-1 mt-4 mb-2">
-            <p className=" text-neutral-300">{data.genre}</p>
+            <p className="text-xs lg:text-base text-neutral-300">
+              {data.genre}
+            </p>
           </div>
         </div>
       </div>
