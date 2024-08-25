@@ -1,8 +1,7 @@
 "use client";
 import useSWR from "swr";
-import axios from "axios";
+import fetcher from "@/lib/fetcher";
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
 const useMovie = (id) => {
   const { data, error, isLoading } = useSWR(
     id ? `/api/movies/${id}` : null,
