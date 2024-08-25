@@ -11,7 +11,7 @@ export default function Billboard() {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const { data } = useBillboard();
   const { openModal, isOpen } = useInfoModal();
-
+  console.log("Billboard data:", data);
   const handleOpenModal = () => {
     openModal(data?.id);
   };
@@ -23,21 +23,24 @@ export default function Billboard() {
       setIsSoundOn(true);
     }
   }, [isOpen]);
+
   return (
     <div className="relative h-[56.25vw] ">
       <video
         autoPlay
-        muted={!isSoundOn}
         loop
+        preload="auto"
+        muted={!isSoundOn}
         poster={data?.thumbnail}
-        src="/videos/dark.mp4"
+        src={data?.videoUrl}
         className="brightness-[70%]"
       ></video>
+
       <div className="absolute top-[50%] left-6 md:left-14 w-1/2 lg:w-1/2 xl:w-1/3">
         <p className="text-xl sm:text-4xl  lg:text-5xl xl:text-5xl  font-extrabold text-white">
           {data?.title}
         </p>
-        <BillboardText description={data?.description} />
+
         <div className="flex space-x-1 md:space-x-4 mt-1 md:mt-5">
           <PlayButton movieId={data?.id} />
           <div

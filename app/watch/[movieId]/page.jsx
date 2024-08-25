@@ -20,7 +20,7 @@ export default function Watch({ params }) {
           {data?.title}
         </p>
       </nav>
-      <video src="/videos/dark.mp4" autoPlay controls></video>
+      <video src={data?.videoUrl} autoPlay controls></video>
     </div>
   );
 }

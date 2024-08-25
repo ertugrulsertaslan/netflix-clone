@@ -70,7 +70,7 @@ export default function InfoModal({ visible, onClose }) {
               muted={!isSoundOn}
               loop
               poster={data?.thumbnailUrl}
-              src="/videos/dark.mp4"
+              src={data?.videoUrl}
             ></video>
             <div
               onClick={handleClose}
