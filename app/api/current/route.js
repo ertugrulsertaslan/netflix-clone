@@ -1,15 +1,13 @@
 import serverAuth from "@/lib/serverAuth";
-
-export async function GET(req) {
+import { NextResponse } from "next/server";
+export async function GET(request) {
   try {
-    const { currentUser } = await serverAuth(req);
-    return new Response(JSON.stringify(currentUser), {
-      status: 200,
-    });
+    const { currentUser } = await serverAuth(request);
+    return NextResponse.json(currentUser);
   } catch (error) {
-    console.error("Error in API route:", error);
-    return new Response(error.message, {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 400 }
+    );
   }
 }
