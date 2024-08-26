@@ -7,11 +7,11 @@ import LikeButton from "@/components/buttons/LikeButton";
 import VolumeButton from "@/components/buttons/VolumeButton";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
-
+import Skeleton from "@/components/skeleton/index";
 export default function InfoModal({ visible, onClose }) {
   const [isVisible, setIsVisible] = useState(!!visible);
   const { movieId } = useInfoModal();
-  const { data = {} } = useMovie(movieId);
+  const { data = {}, isLoading } = useMovie(movieId);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const modalRef = useRef(null);
   useEffect(() => {
@@ -63,6 +63,11 @@ export default function InfoModal({ visible, onClose }) {
         drop-shadow-md
         `}
         >
+          {isLoading && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 bg-gray-800 bg-opacity-50 z-10">
+              <Skeleton className="w-full h-full" />
+            </div>
+          )}
           <div className="relative h-1/2">
             <video
               className="w-full brightness-[60%] object-cover h-full"

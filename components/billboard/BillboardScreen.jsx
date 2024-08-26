@@ -1,39 +1,35 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import BillboardText from "@/components/billboard/BillboardText";
 import PlayButton from "@/components/buttons/PlayButton";
 import VolumeButton from "@/components/buttons/VolumeButton";
 import useBillboard from "@/hooks/useBillboard";
 import useInfoModal from "@/hooks/useInfoModal";
-
+import Skeleton from "@/components/skeleton/index";
 export default function Billboard() {
-  const [isSoundOn, setIsSoundOn] = useState(true);
-  const { data } = useBillboard();
+  const [isSoundOn, setIsSoundOn] = useState(false);
+  const { data, isLoading } = useBillboard();
   const { openModal, isOpen } = useInfoModal();
-  console.log("Billboard data:", data);
+
   const handleOpenModal = () => {
     openModal(data?.id);
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsSoundOn(false);
-    } else {
-      setIsSoundOn(true);
-    }
-  }, [isOpen]);
-
   return (
-    <div className="relative h-[56.25vw] ">
+    <div className="relative h-full w-full">
+      {isLoading && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 bg-gray-800 bg-opacity-50 z-10">
+          <Skeleton className="w-full h-full" />
+        </div>
+      )}
       <video
         autoPlay
         loop
-        preload="auto"
         muted={!isSoundOn}
-        poster={data?.thumbnail}
+        poster={data?.thumbnailUrl}
         src={data?.videoUrl}
-        className="brightness-[70%]"
+        className="w-full h-full object-cover brightness-[70%]"
       ></video>
 
       <div className="absolute top-[50%] left-6 md:left-14 w-1/2 lg:w-1/2 xl:w-1/3">
