@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import BillboardText from "@/components/billboard/BillboardText";
 import PlayButton from "@/components/buttons/PlayButton";
@@ -8,13 +8,16 @@ import useBillboard from "@/hooks/useBillboard";
 import useInfoModal from "@/hooks/useInfoModal";
 import Skeleton from "@/components/skeleton/index";
 export default function Billboard() {
+  const { openModal, billboardVoice } = useInfoModal();
   const [isSoundOn, setIsSoundOn] = useState(false);
   const { data, isLoading } = useBillboard();
-  const { openModal, isOpen } = useInfoModal();
 
   const handleOpenModal = () => {
     openModal(data?.id);
   };
+  useEffect(() => {
+    setIsSoundOn(billboardVoice);
+  }, [billboardVoice]);
 
   return (
     <div className="relative h-full w-full">

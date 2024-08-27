@@ -10,10 +10,15 @@ import useMovie from "@/hooks/useMovie";
 import Skeleton from "@/components/skeleton/index";
 export default function InfoModal({ visible, onClose }) {
   const [isVisible, setIsVisible] = useState(!!visible);
-  const { movieId } = useInfoModal();
+  const { movieId, infoModalVoice } = useInfoModal();
   const { data = {}, isLoading } = useMovie(movieId);
-  const [isSoundOn, setIsSoundOn] = useState(true);
+  const [isSoundOn, setIsSoundOn] = useState(infoModalVoice);
   const modalRef = useRef(null);
+
+  useEffect(() => {
+    setIsSoundOn(infoModalVoice);
+  }, [infoModalVoice]);
+
   useEffect(() => {
     setIsVisible(!!visible);
   }, [visible]);
