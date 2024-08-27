@@ -6,6 +6,7 @@ const useInfoModal = create((set) => ({
   isOpen: false,
   billboardVoice: false,
   infoModalVoice: false,
+  movieCardVoices: {},
   openModal: (movieId) =>
     set({ isOpen: true, movieId, billboardVoice: false, infoModalVoice: true }),
   onClose: () =>
@@ -15,6 +16,16 @@ const useInfoModal = create((set) => ({
       billboardVoice: true,
       infoModalVoice: false,
     }),
+
+  setBillboardVoice: (value) => set({ billboardVoice: value }),
+  setInfoModalVoice: (value) => set({ infoModalVoice: value }),
+  setMovieCardVoice: (id, value) =>
+    set((state) => ({
+      movieCardVoices: {
+        ...state.movieCardVoices,
+        [id]: value,
+      },
+    })),
 }));
 
 export default useInfoModal;

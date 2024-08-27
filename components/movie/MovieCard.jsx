@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { BsFillPlayFill } from "react-icons/bs";
@@ -8,7 +8,38 @@ import useInfoModal from "@/hooks/useInfoModal.js";
 
 export default function MovieCard({ data }) {
   const router = useRouter();
-  const { openModal } = useInfoModal();
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
+  const { openModal, movieCardVoices, setBillboardVoice, setMovieCardVoice } =
+    useInfoModal();
+
+  useEffect(() => {
+    setMovieCardVoice(data.id, false);
+
+    return () => {
+      setMovieCardVoice(data.id, false);
+    };
+  }, [data.id, setMovieCardVoice]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    }
+    setMovieCardVoice(data.id, true);
+    setBillboardVoice(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    setMovieCardVoice(data.id, false);
+    setBillboardVoice(true);
+  };
+
   return (
     <div className="group bg-zinc-900 col-span relative h-[16vw] md:h-[9vw]">
       <img
@@ -16,7 +47,10 @@ export default function MovieCard({ data }) {
         src={data.thumbnailUrl}
         alt="Thumbnail"
       />
+
       <div
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className="
         opacity-0
         absolute top-0
@@ -31,11 +65,13 @@ export default function MovieCard({ data }) {
         group-hover:opacity-100
       "
       >
-        <img
-          className="cursor-pointer object-cover transition duration shadow-xl rounded-t-md w-full md:h-[12vw]"
-          src={data.thumbnailUrl}
-          alt="Thumbnail"
-        />
+        <video
+          className="w-full h-full object-cover"
+          src={data?.videoUrl}
+          ref={videoRef}
+          loop
+          muted={!movieCardVoices[data.id]}
+        ></video>
         <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row justify-between">
             <div className="flex flex-row items-center gap-1">
