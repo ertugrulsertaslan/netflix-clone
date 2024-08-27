@@ -20,7 +20,13 @@ export default function Watch({ params }) {
           {data?.title}
         </p>
       </nav>
-      <video src={data?.videoUrl} autoPlay controls></video>
+      <video
+        className="w-full h-full"
+        src={data?.videoUrl}
+        poster={data?.thumbnailUrl}
+        autoPlay
+        controls
+      ></video>
     </div>
   );
 }
