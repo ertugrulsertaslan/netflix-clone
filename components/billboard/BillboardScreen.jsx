@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import BillboardText from "@/components/billboard/BillboardText";
 import PlayButton from "@/components/buttons/PlayButton";
-import VolumeButton from "@/components/buttons/VolumeButton";
 import useBillboard from "@/hooks/useBillboard";
 import useInfoModal from "@/hooks/useInfoModal";
 import Skeleton from "@/components/skeleton/index";
+import { HiOutlineSpeakerXMark } from "react-icons/hi2";
+import { HiOutlineSpeakerWave } from "react-icons/hi2";
 export default function Billboard() {
-  const { openModal, billboardVoice } = useInfoModal();
-  const [isSoundOn, setIsSoundOn] = useState(false);
+  const { openModal, billboardVoice, setBillboardVoice } = useInfoModal();
+  const [isSoundOn, setIsSoundOn] = useState(billboardVoice);
   const { data, isLoading } = useBillboard();
+
+  const Icon = isSoundOn ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
 
   const handleOpenModal = () => {
     openModal(data?.id);
@@ -18,6 +21,11 @@ export default function Billboard() {
   useEffect(() => {
     setIsSoundOn(billboardVoice);
   }, [billboardVoice]);
+
+  const handleVoice = () => {
+    setBillboardVoice(!isSoundOn);
+    setIsSoundOn(!isSoundOn);
+  };
 
   return (
     <div className="relative h-full w-full">
@@ -39,7 +47,7 @@ export default function Billboard() {
         <p className="text-xl sm:text-4xl  lg:text-5xl xl:text-5xl  font-extrabold text-white">
           {data?.title}
         </p>
-
+        <BillboardText description={data?.description} />
         <div className="flex space-x-1 md:space-x-4 mt-1 md:mt-5">
           <PlayButton movieId={data?.id} />
           <div
@@ -54,7 +62,12 @@ export default function Billboard() {
         </div>
       </div>
       <div className="absolute top-[60%] right-20 sm:right-28 md:right-32 lg:right-36">
-        <VolumeButton isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
+        <div
+          onClick={handleVoice}
+          className="border md:border-2 w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center"
+        >
+          <Icon className="text-white text-sm sm:text-2xl md:text-3xl" />
+        </div>
       </div>
     </div>
   );

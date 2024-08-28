@@ -44,6 +44,7 @@ export default function MovieCard({ data }) {
   return (
     <div className="group bg-zinc-900 col-span relative h-[16vw] md:h-[9vw]">
       <img
+        onClick={() => router.push(`/watch/${data.id}`)}
         className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[16vw] md:h-[9vw]"
         src={data.thumbnailUrl}
         alt="Thumbnail"
@@ -67,7 +68,8 @@ export default function MovieCard({ data }) {
       "
       >
         <video
-          className="w-full h-full object-cover"
+          onClick={() => router.push(`/watch/${data.id}`)}
+          className="w-full h-full object-cover cursor-pointer"
           src={data?.videoUrl}
           ref={videoRef}
           loop

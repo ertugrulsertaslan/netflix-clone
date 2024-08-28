@@ -1,4 +1,3 @@
-import InfoModal from "@/components/infoModal/InfoModal";
 import { create } from "zustand";
 
 const useInfoModal = create((set) => ({
