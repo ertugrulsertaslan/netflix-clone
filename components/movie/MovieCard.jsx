@@ -5,7 +5,6 @@ import { BsFillPlayFill } from "react-icons/bs";
 import FavoriteButton from "@/components/buttons/FavoriteButton";
 import LikeButton from "@/components/buttons/LikeButton";
 import useInfoModal from "@/hooks/useInfoModal.js";
-
 export default function MovieCard({ data }) {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +24,9 @@ export default function MovieCard({ data }) {
     setIsHovered(true);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play();
+      videoRef.current.play().catch((error) => {
+        console.error("Playback error:", error);
+      });
     }
     setMovieCardVoice(data.id, true);
     setBillboardVoice(false);
