@@ -12,7 +12,7 @@ export default function MovieList({ data, title }) {
         <p className="text-white text-md md:text-2xl  font-semibold mb-4">
           {title}
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
           {data.map((movie) => (
             <MovieCard key={movie.id} data={movie} />
           ))}

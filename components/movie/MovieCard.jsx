@@ -50,10 +50,10 @@ export default function MovieCard({ data }) {
     setBillboardVoice(false);
   };
   return (
-    <div className="group bg-zinc-900 col-span relative h-[16vw] md:h-[9vw]">
+    <div className="group bg-zinc-900 col-span relative h-[32vw] md:h-[9vw]">
       <img
         onClick={() => router.push(`/watch/${data.id}`)}
-        className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[16vw] md:h-[9vw]"
+        className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-4/5 md:w-full h-[32vw] md:h-[9vw]"
         src={data.thumbnailUrl}
         alt="Thumbnail"
       />
@@ -68,8 +68,6 @@ export default function MovieCard({ data }) {
         z-10 invisible sm:visible
         delay-300 sm:w-74 md:w-56 lg:w-74 xl:80 2xl:w-96 scale-0
         group-hover:scale-110
-       
-    
         group-hover:-translate-y-[6vw]
         md:last:group-hover:-translate-x-[1vw]
         group-hover:opacity-100

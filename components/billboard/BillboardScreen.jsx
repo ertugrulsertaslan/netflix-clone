@@ -13,7 +13,7 @@ import { HiOutlineSpeakerWave } from "react-icons/hi2";
 export default function Billboard() {
   const { openModal, billboardVoice, setBillboardVoice } = useInfoModal();
   const { data, isLoading } = useBillboard();
-
+  const router = useRouter();
   const Icon = billboardVoice ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
 
   const handleOpenModal = () => {
@@ -76,13 +76,13 @@ export default function Billboard() {
           <div className="absolute bottom-10 left-14 flex gap-8">
             <div
               onClick={() => router.push(`/watch/${data?.id}`)}
-              className="bg-white flex w-28 items-center justify-center py-1 sm:py-1 md:py-3 px-2 lg:px-3 hover:bg-opacity-50  xl:w-36  rounded-md cursor-pointer"
+              className="bg-white flex w-28 items-center justify-center py-1 px-2 hover:bg-opacity-50 rounded-md cursor-pointer"
             >
               <FaPlay className="text-sm" />
               <button className="ml-3">Play</button>
             </div>
-            <div className="bg-neutral-800 w-28 ml-5 text-white flex items-center justify-center py-1 sm:py-1 md:py-3 px-2 lg:px-3 hover:bg-opacity-50  xl:w-36  rounded-md cursor-pointer">
-              <FaPlay className="text-sm" />
+            <div className="bg-neutral-800 w-28 ml-5 text-white flex items-center justify-center py-1 px-2 hover:bg-opacity-50 rounded-md cursor-pointer">
+              <IoIosInformationCircleOutline className="text-lg" />
               <button className="ml-3">My List</button>
             </div>
           </div>
