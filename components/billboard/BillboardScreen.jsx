@@ -10,21 +10,13 @@ import { HiOutlineSpeakerXMark } from "react-icons/hi2";
 import { HiOutlineSpeakerWave } from "react-icons/hi2";
 export default function Billboard() {
   const { openModal, billboardVoice, setBillboardVoice } = useInfoModal();
-  const [isSoundOn, setIsSoundOn] = useState(billboardVoice);
   const { data, isLoading } = useBillboard();
 
-  const Icon = isSoundOn ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
+  const Icon = billboardVoice ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
 
   const handleOpenModal = () => {
+    setBillboardVoice(false);
     openModal(data?.id);
-  };
-  useEffect(() => {
-    setIsSoundOn(billboardVoice);
-  }, [billboardVoice]);
-
-  const handleVoice = () => {
-    setBillboardVoice(!isSoundOn);
-    setIsSoundOn(!isSoundOn);
   };
 
   return (
@@ -36,8 +28,9 @@ export default function Billboard() {
       )}
       <video
         autoPlay
+        playsInline
         loop
-        muted={!isSoundOn}
+        muted={!billboardVoice}
         poster={data?.thumbnailUrl}
         src={data?.videoUrl}
         className="w-full h-full object-cover brightness-[70%]"
@@ -63,7 +56,7 @@ export default function Billboard() {
       </div>
       <div className="absolute top-[60%] right-20 sm:right-28 md:right-32 lg:right-36">
         <div
-          onClick={handleVoice}
+          onClick={() => setBillboardVoice(!billboardVoice)}
           className="border md:border-2 w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center"
         >
           <Icon className="text-white text-sm sm:text-2xl md:text-3xl" />

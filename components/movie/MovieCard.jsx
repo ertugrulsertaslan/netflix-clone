@@ -9,9 +9,13 @@ export default function MovieCard({ data }) {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef(null);
-  const { openModal, movieCardVoices, setBillboardVoice, setMovieCardVoice } =
-    useInfoModal();
-
+  const {
+    openModal,
+    movieCardVoices,
+    setBillboardVoice,
+    setMovieCardVoice,
+    billboardVoice,
+  } = useInfoModal();
   useEffect(() => {
     setMovieCardVoice(data.id, false);
 
@@ -41,6 +45,10 @@ export default function MovieCard({ data }) {
     setBillboardVoice(true);
   };
 
+  const handleOpenModal = () => {
+    openModal(data?.id);
+    setBillboardVoice(false);
+  };
   return (
     <div className="group bg-zinc-900 col-span relative h-[16vw] md:h-[9vw]">
       <img
@@ -89,7 +97,7 @@ export default function MovieCard({ data }) {
             </div>
             <div>
               <div
-                onClick={() => openModal(data?.id)}
+                onClick={handleOpenModal}
                 className="cursor-pointer w-6 h-6 md:w-8 md:h-8 lg:w-11 lg:h-11 border-2 text-white border-gray-500  rounded-full flex justify-center items-center transition hover:bg-neutral-700 md:text-2xl lg:text-4xl"
               >
                 <MdKeyboardArrowDown />
