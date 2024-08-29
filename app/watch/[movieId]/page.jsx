@@ -21,10 +21,9 @@ export default function Watch({ params }) {
         </p>
       </nav>
       <video
-        className="w-full h-full object-cover"
+        className="w-full h-full"
         src={data?.videoUrl}
         poster={data?.thumbnailUrl}
-        autoPlay
         controls
         playsInline
       ></video>
