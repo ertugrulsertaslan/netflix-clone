@@ -8,6 +8,7 @@ import useInfoModal from "@/hooks/useInfoModal.js";
 export default function MovieCard({ data }) {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
+  const [isVideoMuted, setIsVideoMuted] = useState(false);
   const videoRef = useRef(null);
   const {
     openModal,
@@ -16,6 +17,7 @@ export default function MovieCard({ data }) {
     setMovieCardVoice,
     billboardVoice,
   } = useInfoModal();
+
   useEffect(() => {
     setMovieCardVoice(data.id, false);
 
@@ -23,6 +25,12 @@ export default function MovieCard({ data }) {
       setMovieCardVoice(data.id, false);
     };
   }, [data.id, setMovieCardVoice]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isVideoMuted;
+    }
+  }, [isVideoMuted]);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -79,7 +87,7 @@ export default function MovieCard({ data }) {
           src={data?.videoUrl}
           ref={videoRef}
           loop
-          muted={!movieCardVoices[data.id]}
+          muted={isVideoMuted}
         ></video>
         <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row justify-between">

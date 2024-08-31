@@ -16,7 +16,8 @@ export default function FavoriteButton({ movieId }) {
     return list.includes(movieId);
   }, [currentUser, movieId]);
 
-  const toogleFavorites = async () => {
+  const toogleFavorites = async (e) => {
+    e.stopPropagation();
     const requestData = { movieId };
     let response;
     if (isFavorite) {
@@ -38,7 +39,7 @@ export default function FavoriteButton({ movieId }) {
   const Icon = isFavorite ? IoIosCheckmark : FiPlus;
   return (
     <div
-      onClick={toogleFavorites}
+      onClick={(e) => toogleFavorites(e)}
       className="cursor-pointer w-6 h-6 md:w-8 md:h-8 lg:w-11 lg:h-11 border-2 text-white border-gray-500 rounded-full flex justify-center items-center transition hover:bg-neutral-700"
     >
       <Icon size={isFavorite ? 35 : 25} />
