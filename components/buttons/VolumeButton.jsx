@@ -6,9 +6,9 @@ export default function VolumeButton({ isSoundOn, setIsSoundOn }) {
   return (
     <div
       onClick={() => setIsSoundOn(!isSoundOn)}
-      className="border md:border-2 w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center"
+      className="hover:text-white hover:border-white text-neutral-500 border-neutral-500 border md:border-2 w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center"
     >
-      <Icon className="text-white text-sm sm:text-2xl md:text-3xl" />
+      <Icon className="text-sm sm:text-2xl md:text-3xl" />
     </div>
   );
 }

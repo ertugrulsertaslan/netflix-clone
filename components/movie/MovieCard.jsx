@@ -5,17 +5,21 @@ import { BsFillPlayFill } from "react-icons/bs";
 import FavoriteButton from "@/components/buttons/FavoriteButton";
 import LikeButton from "@/components/buttons/LikeButton";
 import useInfoModal from "@/hooks/useInfoModal.js";
+import { HiOutlineSpeakerXMark } from "react-icons/hi2";
+import { HiOutlineSpeakerWave } from "react-icons/hi2";
+
 export default function MovieCard({ data }) {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
+
   const videoRef = useRef(null);
   const {
+    isVideoMuted,
+    toggleVideoMute,
     openModal,
     movieCardVoices,
     setBillboardVoice,
     setMovieCardVoice,
-    billboardVoice,
   } = useInfoModal();
 
   useEffect(() => {
@@ -35,7 +39,6 @@ export default function MovieCard({ data }) {
   const handleMouseEnter = () => {
     setIsHovered(true);
     if (videoRef.current) {
-      videoRef.current.currentTime = 0;
       videoRef.current.play().catch((error) => {
         console.error("Playback error:", error);
       });
@@ -57,6 +60,7 @@ export default function MovieCard({ data }) {
     openModal(data?.id);
     setBillboardVoice(false);
   };
+  const Icon = !isVideoMuted ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
   return (
     <div className="group bg-zinc-900 col-span relative h-[32vw] md:h-[9vw]">
       <img
@@ -89,6 +93,14 @@ export default function MovieCard({ data }) {
           loop
           muted={isVideoMuted}
         ></video>
+        <div className="absolute right-5 bottom-5 z-10 cursor-pointer">
+          <div
+            onClick={toggleVideoMute}
+            className="hover:text-white hover:border-white text-neutral-500 border-neutral-500 border md:border-2 w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full flex justify-center items-center"
+          >
+            <Icon className="text-sm sm:text-2xl md:text-3xl" />
+          </div>
+        </div>
         <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row justify-between">
             <div className="flex flex-row items-center gap-1">

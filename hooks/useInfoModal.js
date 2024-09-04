@@ -6,6 +6,7 @@ const useInfoModal = create((set) => ({
   billboardVoice: false,
   infoModalVoice: false,
   movieCardVoices: {},
+  isVideoMuted: false,
   openModal: (movieId) =>
     set({ isOpen: true, movieId, billboardVoice: false, infoModalVoice: true }),
   onClose: () =>
@@ -25,6 +26,8 @@ const useInfoModal = create((set) => ({
         [id]: value,
       },
     })),
+  toggleVideoMute: () =>
+    set((state) => ({ isVideoMuted: !state.isVideoMuted })),
 }));
 
 export default useInfoModal;
