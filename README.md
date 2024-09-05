@@ -43,7 +43,6 @@ Netflix Clone is a web application that replicates the functionality and design 
 - 🗃️ [Zustand](https://zustand-demo.pmnd.rs) - State management library.
 - 📦 [Next.js](https://nextjs.org) - React framework for server-side rendering and static site generation.
 - 💻 [React.js](https://reactjs.org/) - JS library for crafting user interfaces
-- ⚡ [Vite](https://vitejs.dev/) - Module bundler
 - 🎨 [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 - ⚙️ [Material-UI (MUI)](https://mui.com) - React components for faster and easier web development.
 - 🛤️ [NextAuth.js](https://next-auth.js.org) - Authentication for Next.js applications.
