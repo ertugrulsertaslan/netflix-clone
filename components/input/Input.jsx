@@ -34,7 +34,7 @@ export default function Input({ id, onChange, value, label, type }) {
       <TextField
         id={id}
         onChange={onChange}
-        type={showPassword ? "password" : "text"}
+        type={!showPassword ? "password" : "text"}
         value={value}
         sx={style}
         className="text-white  w-full rounded-md"
