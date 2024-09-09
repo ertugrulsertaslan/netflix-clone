@@ -17,7 +17,6 @@ export default function MovieCard({ data }) {
     isVideoMuted,
     toggleVideoMute,
     openModal,
-    movieCardVoices,
     setBillboardVoice,
     setMovieCardVoice,
   } = useInfoModal();
