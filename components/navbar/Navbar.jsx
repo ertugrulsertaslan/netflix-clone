@@ -6,13 +6,14 @@ import { BsChevronDown, BsSearch } from "react-icons/bs";
 import NavbarItem from "@/components/navbar/NavbarItem";
 import MobileMenu from "@/components/navbar/MobileMenu";
 import ProfileSettingMenu from "@/components/navbar/ProfileSettingMenu";
-
+import { useRouter } from "next/navigation";
 const TOP_OFFSET = 5;
 
 export default function Navbar({ user }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileSetting, setShowProfileSetting] = useState(false);
   const [ShowBackground, setShowBackground] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= TOP_OFFSET) {
@@ -42,14 +43,19 @@ export default function Navbar({ user }) {
             ShowBackground ? "bg-zinc-900 bg-opacity-90" : ""
           }`}
         >
-          <img className="h-5 lg:h-12" src="/images/logo.png" alt="Logo" />
+          <img
+            onClick={() => router.push("/")}
+            className="h-5 lg:h-12 cursor-pointer"
+            src="/images/logo.png"
+            alt="Logo"
+          />
           <div className="flex-row ml-5 gap-6 hidden lg:flex">
             <NavbarItem label="Home" href="/" />
-            <NavbarItem label="TV Shows" href="/tv-shows" />
-            <NavbarItem label="Films" href="/films" />
-            <NavbarItem label="New & Popular" href="/new-popular" />
+            <NavbarItem label="TV Shows" href="/" />
+            <NavbarItem label="Films" href="/" />
+            <NavbarItem label="New & Popular" href="/" />
             <NavbarItem label="My List" href="mylist" />
-            <NavbarItem label="Browse by languages" href="/browse-languages" />
+            <NavbarItem label="Browse by languages" href="/" />
           </div>
           <div
             onClick={toogleMobileMenu}
