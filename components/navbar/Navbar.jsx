@@ -44,12 +44,12 @@ export default function Navbar({ user }) {
         >
           <img className="h-5 lg:h-12" src="/images/logo.png" alt="Logo" />
           <div className="flex-row ml-5 gap-6 hidden lg:flex">
-            <NavbarItem label="Home" />
-            <NavbarItem label="TV Shows" />
-            <NavbarItem label="Films" />
-            <NavbarItem label="New & Popular" />
-            <NavbarItem label="My List" />
-            <NavbarItem label="Browse by languages" />
+            <NavbarItem label="Home" href="/" />
+            <NavbarItem label="TV Shows" href="/tv-shows" />
+            <NavbarItem label="Films" href="/films" />
+            <NavbarItem label="New & Popular" href="/new-popular" />
+            <NavbarItem label="My List" href="mylist" />
+            <NavbarItem label="Browse by languages" href="/browse-languages" />
           </div>
           <div
             onClick={toogleMobileMenu}

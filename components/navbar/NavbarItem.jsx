@@ -1,7 +1,9 @@
-export default function NavbarItem({ label }) {
+import Link from "next/link";
+
+export default function NavbarItem({ label, href }) {
   return (
     <div className="text-white cursor-pointer hover:text-gray-300 transition text-sm">
-      {label}
+      <Link href={href}>{label}</Link>
     </div>
   );
 }
