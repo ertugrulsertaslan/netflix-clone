@@ -1,5 +1,5 @@
 "use client";
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import { useRouter } from "next/navigation";
 import useMovie from "@/hooks/useMovie";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -8,27 +8,7 @@ export default function WatchPage({ params }) {
   const router = useRouter();
   const { movieId } = params;
   const { data } = useMovie(movieId);
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 767px)").matches);
-    };
 
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
-    };
-  }, []);
-
-  const handlePlay = () => {
-    const videoElement = document.getElementById("video-player");
-    if (videoElement) {
-      videoElement.play();
-      setIsMobile(false);
-    }
-  };
   return (
     <div className="h-screen w-screen bg-black">
       <nav
@@ -42,23 +22,13 @@ export default function WatchPage({ params }) {
         </p>
       </nav>
       <video
-        id="video-player"
-        onClick={handlePlay}
-        className="w-full h-full lg:object-cover"
-        src={data?.videoUrl}
+        className="w-full h-full object-contain md:object-cover"
         poster={data?.thumbnailUrl}
         controls
+        src={data?.videoUrl}
         playsInline
-        autoPlay={!isMobile}
+        autoPlay
       ></video>
-      {isMobile && (
-        <button
-          onClick={handlePlay}
-          className="md:hidden absolute inset-0 flex items-center justify-center bg-black bg-opacity-50"
-        >
-          <span className="text-white text-xl">Play</span>
-        </button>
-      )}
     </div>
   );
 }

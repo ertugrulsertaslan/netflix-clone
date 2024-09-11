@@ -1,9 +1,10 @@
 "use client";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
+import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/navbar/Navbar";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { Analytics } from "@vercel/analytics/react";
 import { usePathname } from "next/navigation";
 export default function RootLayout({ children }) {
   const { data: user } = useCurrentUser();
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           {!isLoginOrProfilePageOrWatchPage && <Navbar user={user?.name} />}
         </header>
         <main className="h-full">{children}</main>
+        <Analytics />
       </body>
     </html>
   );

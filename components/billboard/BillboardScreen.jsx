@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import BillboardText from "@/components/billboard/BillboardText";
 import PlayButton from "@/components/buttons/PlayButton";
