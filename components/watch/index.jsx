@@ -1,5 +1,5 @@
 "use client";
-import { React } from "react";
+import { React, useState } from "react";
 import { useRouter } from "next/navigation";
 import useMovie from "@/hooks/useMovie";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -8,6 +8,10 @@ export default function WatchPage({ params }) {
   const router = useRouter();
   const { movieId } = params;
   const { data } = useMovie(movieId);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
   return (
     <div className="h-screen w-screen bg-black">
       <nav
@@ -21,13 +25,22 @@ export default function WatchPage({ params }) {
         </p>
       </nav>
       <video
-        autoPlay
+        onClick={handlePlay}
         className="w-full h-full lg:object-cover"
         src={data?.videoUrl}
         poster={data?.thumbnailUrl}
         controls
         playsInline
+        autoPlay={isPlaying}
       ></video>
+      {!isPlaying && (
+        <button
+          onClick={handlePlay}
+          className="md:hidden absolute inset-0 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <span className="text-white text-xl">Play</span>
+        </button>
+      )}
     </div>
   );
 }
