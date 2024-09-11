@@ -22,7 +22,7 @@ export default function WatchPage({ params }) {
       </nav>
       <video
         autoPlay
-        className="w-full h-full object-cover"
+        className="w-full h-full lg:object-cover"
         src={data?.videoUrl}
         poster={data?.thumbnailUrl}
         controls

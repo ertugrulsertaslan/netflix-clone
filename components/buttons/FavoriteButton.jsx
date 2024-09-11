@@ -1,5 +1,5 @@
 "use client";
-import { React, useMemo } from "react";
+import { React, useMemo, useCallback } from "react";
 import axios from "axios";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useFavorites from "@/hooks/useFavorites";
@@ -16,25 +16,28 @@ export default function FavoriteButton({ movieId }) {
     return list.includes(movieId);
   }, [currentUser, movieId]);
 
-  const toogleFavorites = async (e) => {
-    e.stopPropagation();
-    const requestData = { movieId };
-    let response;
-    if (isFavorite) {
-      response = await axios.delete("/api/favorite", { data: requestData });
-    } else {
-      response = await axios.post("/api/favorite", requestData, {
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+  const toogleFavorites = useCallback(
+    async (e) => {
+      e.stopPropagation();
+      const requestData = { movieId };
+      let response;
+      if (isFavorite) {
+        response = await axios.delete("/api/favorite", { data: requestData });
+      } else {
+        response = await axios.post("/api/favorite", requestData, {
+          headers: { "Content-Type": "application/json" },
+        });
+      }
 
-    const updatedFavoriteIds = response?.data?.favoriteIds;
-    mutate({
-      ...currentUser,
-      favoriteIds: updatedFavoriteIds,
-    });
-    mutateFavorites();
-  };
+      const updatedFavoriteIds = response?.data?.favoriteIds;
+      mutate({
+        ...currentUser,
+        favoriteIds: updatedFavoriteIds,
+      });
+      mutateFavorites();
+    },
+    [movieId, isFavorite, currentUser, mutate, mutateFavorites]
+  );
 
   const Icon = isFavorite ? IoIosCheckmark : FiPlus;
   return (

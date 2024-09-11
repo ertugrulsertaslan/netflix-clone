@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import { BsChevronDown, BsSearch } from "react-icons/bs";
@@ -28,12 +28,12 @@ export default function Navbar({ user }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const toogleMobileMenu = () => {
+  const toogleMobileMenu = useCallback(() => {
     setShowMobileMenu((current) => !current);
-  };
-  const toogleProfileSetting = () => {
+  }, []);
+  const toogleProfileSetting = useCallback(() => {
     setShowProfileSetting((current) => !current);
-  };
+  }, []);
 
   return (
     <>

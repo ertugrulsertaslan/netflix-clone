@@ -23,7 +23,7 @@ export default function Billboard() {
 
   return (
     <>
-      <div className="relative h-full w-full hidden sm:flex">
+      <div className="relative h-[56.25vw] w-full hidden sm:flex">
         {isLoading && (
           <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 bg-gray-800 bg-opacity-50 z-10">
             <Skeleton className="w-full h-full" />
