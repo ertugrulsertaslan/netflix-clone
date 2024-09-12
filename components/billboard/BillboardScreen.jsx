@@ -31,7 +31,6 @@ export default function Billboard() {
         <video
           autoPlay
           playsInline
-          loop
           muted={!billboardVoice}
           poster={data?.thumbnailUrl}
           src={data?.videoUrl}

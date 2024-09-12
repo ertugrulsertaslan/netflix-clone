@@ -22,7 +22,7 @@ export default function WatchPage({ params }) {
         </p>
       </nav>
       <video
-        className="w-full h-full object-contain md:object-cover"
+        className="w-full h-full object-contain lg:object-cover"
         poster={data?.thumbnailUrl}
         controls
         src={data?.videoUrl}
