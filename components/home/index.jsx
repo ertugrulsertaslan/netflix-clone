@@ -1,7 +1,5 @@
 "use client";
-
 import BillboardScreen from "@/components/billboard/BillboardScreen";
-import Footer from "@/components/footer/";
 import MovieList from "@/components/movie/MovieList";
 import InfoModal from "@/components/infoModal/InfoModal";
 import useFavorites from "@/hooks/useFavorites";
@@ -23,7 +21,6 @@ export default function HomeContainer() {
         <MovieList title="Top Searches" data={topSearches} />
         <MovieList title="My List" data={favorites} />
       </div>
-      <Footer />
     </>
   );
 }
