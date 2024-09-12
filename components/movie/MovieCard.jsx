@@ -17,6 +17,7 @@ export default function MovieCard({ data }) {
     isVideoMuted,
     toggleVideoMute,
     openModal,
+    isOpen,
     setBillboardVoice,
     setMovieCardVoice,
   } = useInfoModal();
@@ -52,12 +53,16 @@ export default function MovieCard({ data }) {
       videoRef.current.pause();
     }
     setMovieCardVoice(data.id, false);
-    setBillboardVoice(true);
+    if (isOpen) {
+      setBillboardVoice(false);
+    } else {
+      setBillboardVoice(true);
+    }
   };
 
   const handleOpenModal = () => {
-    openModal(data?.id);
     setBillboardVoice(false);
+    openModal(data?.id);
   };
   const Icon = !isVideoMuted ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
   return (
