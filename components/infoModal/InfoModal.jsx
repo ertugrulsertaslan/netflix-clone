@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useRef } from "react";
+import { React, useEffect, useState, useRef, useCallback } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { VscTriangleDown } from "react-icons/vsc";
 import PlayButton from "@/components/buttons/PlayButton";
@@ -14,6 +14,13 @@ export default function InfoModal({ visible, onClose }) {
   const { data = {}, isLoading } = useMovie(movieId);
   const [isSoundOn, setIsSoundOn] = useState(infoModalVoice);
   const modalRef = useRef(null);
+
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(() => {
+      onClose();
+    }, [300]);
+  }, [onClose]);
 
   useEffect(() => {
     setIsSoundOn(infoModalVoice);
@@ -32,23 +39,13 @@ export default function InfoModal({ visible, onClose }) {
 
     if (isVisible) {
       document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
     }
+  }, [isVisible, handleClose]);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isVisible]);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-    }, [300]);
-  };
-
-  if (!visible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
     <div className="hidden z-50 transition duration-300 bg-black bg-opacity-80 sm:flex fixed inset-0 overflow-auto scrollbar-hidden">

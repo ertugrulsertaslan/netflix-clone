@@ -1,10 +1,14 @@
 "use client";
+import React from "react";
 import BillboardScreen from "@/components/billboard/BillboardScreen";
 import MovieList from "@/components/movie/MovieList";
 import InfoModal from "@/components/infoModal/InfoModal";
 import useFavorites from "@/hooks/useFavorites";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovieList from "@/hooks/useMovieList";
+
+const MemoizedBillboardScreen = React.memo(BillboardScreen);
+const MemoizedMovieList = React.memo(MovieList);
 
 export default function HomeContainer() {
   const { data: movies = [] } = useMovieList();
@@ -15,11 +19,11 @@ export default function HomeContainer() {
   return (
     <>
       <InfoModal visible={isOpen} onClose={onClose} />
-      <BillboardScreen />
+      <MemoizedBillboardScreen />
       <div className="pb-40">
-        <MovieList title="Trending Now" data={trendingMovies} />
-        <MovieList title="Top Searches" data={topSearches} />
-        <MovieList title="My List" data={favorites} />
+        <MemoizedMovieList title="Trending Now" data={trendingMovies} />
+        <MemoizedMovieList title="Top Searches" data={topSearches} />
+        <MemoizedMovieList title="My List" data={favorites} />
       </div>
     </>
   );
