@@ -14,8 +14,9 @@ export default function HomeContainer() {
   const { data: movies = [] } = useMovieList();
   const { data: favorites = [] } = useFavorites();
   const { isOpen, onClose } = useInfoModal();
-  const trendingMovies = movies.slice(0, 5);
-  const topSearches = movies.slice(5, 10);
+  const trendingMovies = React.useMemo(() => movies.slice(0, 5), [movies]);
+  const topSearches = React.useMemo(() => movies.slice(5, 10), [movies]);
+
   return (
     <>
       <InfoModal visible={isOpen} onClose={onClose} />

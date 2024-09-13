@@ -7,14 +7,24 @@ const useInfoModal = create((set) => ({
   infoModalVoice: false,
   movieCardVoices: {},
   isVideoMuted: false,
+  isBillboardVideoPlaying: true,
+  setIsBillboardVideoPlaying: (value) =>
+    set({ isBillboardVideoPlaying: value }),
   openModal: (movieId) =>
-    set({ isOpen: true, movieId, billboardVoice: false, infoModalVoice: true }),
+    set({
+      isOpen: true,
+      movieId,
+      billboardVoice: false,
+      infoModalVoice: true,
+      isBillboardVideoPlaying: false,
+    }),
   onClose: () =>
     set({
       isOpen: false,
       movieId: undefined,
       billboardVoice: true,
       infoModalVoice: false,
+      isBillboardVideoPlaying: true,
     }),
 
   setBillboardVoice: (value) => set({ billboardVoice: value }),

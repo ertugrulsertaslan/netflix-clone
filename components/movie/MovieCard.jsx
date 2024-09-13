@@ -18,6 +18,7 @@ export default function MovieCard({ data }) {
     toggleVideoMute,
     openModal,
     isOpen,
+    setIsBillboardVideoPlaying,
     setBillboardVoice,
     setMovieCardVoice,
   } = useInfoModal();
@@ -38,6 +39,7 @@ export default function MovieCard({ data }) {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    setIsBillboardVideoPlaying(false);
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
         console.error("Playback error:", error);
@@ -50,6 +52,7 @@ export default function MovieCard({ data }) {
   const handleMouseLeave = () => {
     setIsHovered(false);
     if (videoRef.current) {
+      setIsBillboardVideoPlaying(true);
       videoRef.current.pause();
     }
     setMovieCardVoice(data.id, false);

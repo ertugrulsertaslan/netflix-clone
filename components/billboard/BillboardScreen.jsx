@@ -1,4 +1,5 @@
 "use client";
+import { useState, useRef, useEffect } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import BillboardText from "@/components/billboard/BillboardText";
 import PlayButton from "@/components/buttons/PlayButton";
@@ -10,16 +11,39 @@ import { useRouter } from "next/navigation";
 import { HiOutlineSpeakerXMark } from "react-icons/hi2";
 import { HiOutlineSpeakerWave } from "react-icons/hi2";
 export default function Billboard() {
-  const { openModal, billboardVoice, setBillboardVoice } = useInfoModal();
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const {
+    openModal,
+    billboardVoice,
+    setBillboardVoice,
+    isBillboardVideoPlaying,
+  } = useInfoModal();
   const { data, isLoading } = useBillboard();
+  const videoRef = useRef(null);
   const router = useRouter();
   const Icon = billboardVoice ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isBillboardVideoPlaying) {
+        setIsVideoEnded(false);
+        videoRef.current
+          .play()
+          .catch((error) => console.error("Playback error:", error));
+      } else {
+        setIsVideoEnded(true);
+        videoRef.current.pause();
+      }
+    }
+  }, [isBillboardVideoPlaying]);
 
   const handleOpenModal = () => {
     setBillboardVoice(false);
     openModal(data?.id);
   };
-
+  const handleVideoEnded = () => {
+    setIsVideoEnded(true);
+  };
   return (
     <>
       <div className="relative h-[56.25vw] w-full hidden sm:flex">
@@ -31,12 +55,22 @@ export default function Billboard() {
         <video
           autoPlay
           playsInline
+          ref={videoRef}
           muted={!billboardVoice}
           poster={data?.thumbnailUrl}
           src={data?.videoUrl}
-          className="w-full h-full object-cover brightness-[70%]"
+          onEnded={handleVideoEnded}
+          className={`w-full h-full object-cover brightness-[70%] ${
+            isVideoEnded ? "hidden" : "block"
+          }`}
         ></video>
-
+        <img
+          className={`w-full h-full object-cover ${
+            isVideoEnded ? "block" : "hidden"
+          }`}
+          src={data?.thumbnailUrl}
+          alt="Poster"
+        />
         <div className="absolute top-[50%] left-6 md:left-14 w-1/2 lg:w-1/2 xl:w-1/3">
           <p className="text-xl sm:text-4xl  lg:text-5xl xl:text-5xl  font-extrabold text-white">
             {data?.title}
