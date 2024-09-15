@@ -9,6 +9,7 @@ import useMovieList from "@/hooks/useMovieList";
 
 const MemoizedBillboardScreen = React.memo(BillboardScreen);
 const MemoizedMovieList = React.memo(MovieList);
+const MemoizedInfoModal = React.memo(InfoModal);
 
 export default function HomeContainer() {
   const { data: movies = [] } = useMovieList();
@@ -19,7 +20,7 @@ export default function HomeContainer() {
 
   return (
     <>
-      <InfoModal visible={isOpen} onClose={onClose} />
+      <MemoizedInfoModal visible={isOpen} onClose={onClose} />
       <MemoizedBillboardScreen />
       <div className="pb-40">
         <MemoizedMovieList title="Trending Now" data={trendingMovies} />

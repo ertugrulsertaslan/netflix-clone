@@ -1,14 +1,13 @@
 "use client";
-import { React, useMemo, useCallback } from "react";
 import axios from "axios";
-import useCurrentUser from "@/hooks/useCurrentUser";
-import useFavorites from "@/hooks/useFavorites";
+import React, { useMemo, useCallback } from "react";
 import { IoIosCheckmark } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import useFavorites from "@/hooks/useFavorites";
 
-export default function FavoriteButton({ movieId }) {
+const FavoriteButton = React.memo(({ movieId }) => {
   const { mutate: mutateFavorites } = useFavorites();
-
   const { data: currentUser, mutate } = useCurrentUser();
   const isFavorite = useMemo(() => {
     const list = currentUser?.favoriteIds || [];
@@ -48,4 +47,5 @@ export default function FavoriteButton({ movieId }) {
       <Icon size={isFavorite ? 35 : 25} />
     </div>
   );
-}
+});
+export default FavoriteButton;

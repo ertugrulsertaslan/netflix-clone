@@ -1,18 +1,17 @@
-import { React, useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import React, { useEffect, useState, useRef } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { HiOutlineSpeakerXMark, HiOutlineSpeakerWave } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
 import FavoriteButton from "@/components/buttons/FavoriteButton";
 import LikeButton from "@/components/buttons/LikeButton";
 import useInfoModal from "@/hooks/useInfoModal.js";
-import { HiOutlineSpeakerXMark } from "react-icons/hi2";
-import { HiOutlineSpeakerWave } from "react-icons/hi2";
 
-export default function MovieCard({ data }) {
+const MovieCard = React.memo(({ data }) => {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
-
   const videoRef = useRef(null);
+
   const {
     isVideoMuted,
     toggleVideoMute,
@@ -147,4 +146,6 @@ export default function MovieCard({ data }) {
       </div>
     </div>
   );
-}
+});
+
+export default MovieCard;

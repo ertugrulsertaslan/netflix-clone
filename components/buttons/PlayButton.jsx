@@ -1,9 +1,9 @@
 "use client";
-import { React } from "react";
+import React from "react";
 import { FaPlay } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-export default function PlayButton({ movieId }) {
+const PlayButton = React.memo(({ movieId }) => {
   const router = useRouter();
   return (
     <div
@@ -16,4 +16,5 @@ export default function PlayButton({ movieId }) {
       </button>
     </div>
   );
-}
+});
+export default PlayButton;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
-import { LiaEyeSolid } from "react-icons/lia";
-import { LiaEyeSlashSolid } from "react-icons/lia";
+import { LiaEyeSolid, LiaEyeSlashSolid } from "react-icons/lia";
+
 export default function Input({ id, onChange, value, label, type }) {
   const [showPassword, setShowPassword] = useState(true);
   const style = {

@@ -5,9 +5,10 @@ import PlayButton from "@/components/buttons/PlayButton";
 import FavoriteButton from "@/components/buttons/FavoriteButton";
 import LikeButton from "@/components/buttons/LikeButton";
 import VolumeButton from "@/components/buttons/VolumeButton";
+import Skeleton from "@/components/skeleton/index";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
-import Skeleton from "@/components/skeleton/index";
+
 export default function InfoModal({ visible, onClose }) {
   const [isVisible, setIsVisible] = useState(!!visible);
   const { movieId, infoModalVoice } = useInfoModal();

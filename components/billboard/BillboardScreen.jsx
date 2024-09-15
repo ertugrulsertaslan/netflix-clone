@@ -1,15 +1,15 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import BillboardText from "@/components/billboard/BillboardText";
-import PlayButton from "@/components/buttons/PlayButton";
-import useBillboard from "@/hooks/useBillboard";
-import useInfoModal from "@/hooks/useInfoModal";
-import Skeleton from "@/components/skeleton/index";
+import { HiOutlineSpeakerXMark, HiOutlineSpeakerWave } from "react-icons/hi2";
 import { FaPlay } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { HiOutlineSpeakerXMark } from "react-icons/hi2";
-import { HiOutlineSpeakerWave } from "react-icons/hi2";
+import BillboardText from "@/components/billboard/BillboardText";
+import PlayButton from "@/components/buttons/PlayButton";
+import Skeleton from "@/components/skeleton/index";
+import useBillboard from "@/hooks/useBillboard";
+import useInfoModal from "@/hooks/useInfoModal";
+
 export default function Billboard() {
   const [isVideoEnded, setIsVideoEnded] = useState(false);
   const {
@@ -18,9 +18,11 @@ export default function Billboard() {
     setBillboardVoice,
     isBillboardVideoPlaying,
   } = useInfoModal();
+
   const { data, isLoading } = useBillboard();
   const videoRef = useRef(null);
   const router = useRouter();
+
   const Icon = billboardVoice ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
 
   useEffect(() => {

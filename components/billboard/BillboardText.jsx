@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-export default function BillboardText({ description }) {
+const BillboardText = React.memo(({ description }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
-
   useEffect(() => {
     const fadeOutTimer = setTimeout(() => {
       setIsVisible(false);
@@ -34,4 +33,5 @@ export default function BillboardText({ description }) {
       </p>
     </div>
   );
-}
+});
+export default BillboardText;
