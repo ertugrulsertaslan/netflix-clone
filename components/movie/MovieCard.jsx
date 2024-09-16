@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import FavoriteButton from "@/components/buttons/FavoriteButton";
 import LikeButton from "@/components/buttons/LikeButton";
 import useInfoModal from "@/hooks/useInfoModal.js";
+import Image from "next/image";
 
 const MovieCard = React.memo(({ data }) => {
   const router = useRouter();
@@ -61,19 +62,21 @@ const MovieCard = React.memo(({ data }) => {
       setBillboardVoice(true);
     }
   };
-
   const handleOpenModal = () => {
     setBillboardVoice(false);
     openModal(data?.id);
   };
   const Icon = !isVideoMuted ? HiOutlineSpeakerWave : HiOutlineSpeakerXMark;
   return (
-    <div className="group bg-zinc-900 col-span relative h-[32vw] md:h-[9vw]">
-      <img
+    <div className="group bg-zinc-900 col-span relative h-[26vw] md:h-[9vw]">
+      <Image
+        fill
         onClick={() => router.push(`/watch/${data.id}`)}
-        className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-4/5 md:w-full h-[32vw] md:h-[9vw]"
-        src={data.thumbnailUrl}
+        className="object-cover cursor-pointer transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300"
+        src={data?.thumbnailUrl}
         alt="Thumbnail"
+        priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
       />
 
       <div

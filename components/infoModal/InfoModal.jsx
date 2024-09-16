@@ -8,7 +8,7 @@ import VolumeButton from "@/components/buttons/VolumeButton";
 import Skeleton from "@/components/skeleton/index";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
-
+import Image from "next/image";
 export default function InfoModal({ visible, onClose }) {
   const [isVisible, setIsVisible] = useState(!!visible);
   const { movieId, infoModalVoice } = useInfoModal();
@@ -66,20 +66,19 @@ export default function InfoModal({ visible, onClose }) {
         drop-shadow-md
         `}
         >
-          {isLoading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 bg-gray-800 bg-opacity-50 z-10">
-              <Skeleton className="w-full h-full" />
-            </div>
-          )}
           <div className="relative h-1/2">
-            <video
-              className="w-full brightness-[60%] object-cover h-full"
-              autoPlay
-              muted={!isSoundOn}
-              loop
-              poster={data?.thumbnailUrl}
-              src={data?.videoUrl}
-            ></video>
+            {isLoading ? (
+              <Skeleton className="w-full h-[28vw]" />
+            ) : (
+              <video
+                className="w-full brightness-[60%] object-cover h-full"
+                autoPlay
+                muted={!isSoundOn}
+                loop
+                poster={data?.thumbnailUrl}
+                src={data?.videoUrl}
+              ></video>
+            )}
             <div
               onClick={handleClose}
               className="cursor-pointer absolute top-4 right-5 h-9 w-9 rounded-full bg-black bg-opacity-70 flex items-center justify-center"
@@ -155,11 +154,21 @@ export default function InfoModal({ visible, onClose }) {
           <div className="px-12 p-5 text-white">
             <div className="w-full flex gap-6 items-center bg-neutral-800 px-10 py-5">
               <p className="text-2xl">1</p>
-              <img
-                src={data?.thumbnailUrl}
-                alt=""
-                className="w-40 h-20 rounded-md"
-              />
+              <div className="relative w-2/3 md:w-[30%] h-20">
+                {isLoading ? (
+                  <Skeleton className="w-40 h-full" />
+                ) : (
+                  <div className="relative w-40 h-full">
+                    <Image
+                      src={data?.thumbnailUrl}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                      className="rounded-md object-cover"
+                    />
+                  </div>
+                )}
+              </div>
               <div className="flex">
                 <div className="w-full sm:w-11/12">
                   <p>Pilot</p>
@@ -174,11 +183,21 @@ export default function InfoModal({ visible, onClose }) {
           <div className="px-12 p-5 text-white">
             <div className="w-full flex gap-6 items-center px-10">
               <p className="text-2xl">2</p>
-              <img
-                src={data?.thumbnailUrl}
-                alt=""
-                className="w-40 h-20 rounded-md"
-              />
+              <div className="relative w-2/3 md:w-[30%] h-20">
+                {isLoading ? (
+                  <Skeleton className="w-40 h-full" />
+                ) : (
+                  <div className="relative w-40 h-full">
+                    <Image
+                      src={data?.thumbnailUrl}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                      className="rounded-md object-cover"
+                    />
+                  </div>
+                )}
+              </div>
               <div className="flex">
                 <div className="w-11/12">
                   <p>Shock and Delight</p>
@@ -193,11 +212,21 @@ export default function InfoModal({ visible, onClose }) {
           <div className="px-12 p-5 text-white">
             <div className="w-full flex gap-6 items-center px-10">
               <p className="text-2xl">3</p>
-              <img
-                src={data?.thumbnailUrl}
-                alt=""
-                className="w-40 h-20 rounded-md"
-              />
+              <div className="relative w-2/3 md:w-[30%] h-20">
+                {isLoading ? (
+                  <Skeleton className="w-40 h-full" />
+                ) : (
+                  <div className="relative w-40 h-full">
+                    <Image
+                      src={data?.thumbnailUrl}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                      className="rounded-md object-cover"
+                    />
+                  </div>
+                )}
+              </div>
               <div className="flex">
                 <div className="w-11/12">
                   <p>Art of the Swoon</p>

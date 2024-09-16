@@ -9,6 +9,7 @@ import PlayButton from "@/components/buttons/PlayButton";
 import Skeleton from "@/components/skeleton/index";
 import useBillboard from "@/hooks/useBillboard";
 import useInfoModal from "@/hooks/useInfoModal";
+import Image from "next/image";
 
 export default function Billboard() {
   const [isVideoEnded, setIsVideoEnded] = useState(false);
@@ -49,30 +50,36 @@ export default function Billboard() {
   return (
     <>
       <div className="relative h-[56.25vw] w-full hidden sm:flex">
-        {isLoading && (
+        {!isLoading ? (
+          <video
+            autoPlay
+            playsInline
+            ref={videoRef}
+            muted={!billboardVoice}
+            poster={data?.thumbnailUrl}
+            src={data?.videoUrl}
+            onEnded={handleVideoEnded}
+            className={`w-full h-full object-cover brightness-[70%] ${
+              isVideoEnded ? "hidden" : "block"
+            }`}
+          ></video>
+        ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 bg-gray-800 bg-opacity-50 z-10">
             <Skeleton className="w-full h-full" />
           </div>
         )}
-        <video
-          autoPlay
-          playsInline
-          ref={videoRef}
-          muted={!billboardVoice}
-          poster={data?.thumbnailUrl}
-          src={data?.videoUrl}
-          onEnded={handleVideoEnded}
-          className={`w-full h-full object-cover brightness-[70%] ${
-            isVideoEnded ? "hidden" : "block"
-          }`}
-        ></video>
-        <img
-          className={`w-full h-full object-cover ${
-            isVideoEnded ? "block" : "hidden"
-          }`}
-          src={data?.thumbnailUrl}
-          alt="Poster"
-        />
+
+        {data?.thumbnailUrl ? (
+          <Image
+            fill
+            src={data?.thumbnailUrl}
+            alt="Poster"
+            className={`${isVideoEnded ? "block" : "hidden"}`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          />
+        ) : (
+          <Skeleton className="w-full h-full" />
+        )}
         <div className="absolute top-[50%] left-6 md:left-14 w-1/2 lg:w-1/2 xl:w-1/3">
           <p className="text-xl sm:text-4xl  lg:text-5xl xl:text-5xl  font-extrabold text-white">
             {data?.title}
@@ -100,14 +107,22 @@ export default function Billboard() {
           </div>
         </div>
       </div>
-      <div className="relative w-full h-3/4 p-10 flex sm:hidden">
-        <div className="h-full mt-10">
-          <img
-            src={data?.thumbnailUrl}
-            alt=""
-            className="object-cover w-full h-full"
-          />
-          <div className="absolute bottom-10 left-14 flex gap-8">
+      <div className="relative w-full h-full p-10 flex sm:hidden">
+        <div className="relative w-full h-full">
+          {data?.thumbnailUrl ? (
+            <Image
+              fill
+              src={data.thumbnailUrl}
+              alt="Poster"
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+            />
+          ) : (
+            <Skeleton className="w-full h-full" />
+          )}
+
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex gap-8">
             <div
               onClick={() => router.push(`/watch/${data?.id}`)}
               className="bg-white flex w-28 items-center justify-center py-1 px-2 hover:bg-opacity-50 rounded-md cursor-pointer"
