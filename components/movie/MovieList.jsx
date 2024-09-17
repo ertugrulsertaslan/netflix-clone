@@ -11,7 +11,7 @@ export default function MovieList({
   listId = "default",
 }) {
   const settings = {
-    infinite: false,
+    infinite: data.length <= 1 ? true : false,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,

@@ -23,7 +23,7 @@ export default function HomeContainer() {
     <>
       <MemoizedInfoModal visible={isOpen} onClose={onClose} />
       <MemoizedBillboardScreen />
-      <div className="pb-40 md:pt-10 w-full space-y-8">
+      <div className="pb-10 md:pb-40 md:pt-10 w-full space-y-8">
         <MemoizedMovieList
           title="Trending Now"
           data={trendingMovies}
