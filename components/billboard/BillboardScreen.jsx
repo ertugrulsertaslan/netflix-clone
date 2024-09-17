@@ -107,7 +107,7 @@ export default function Billboard() {
           </div>
         </div>
       </div>
-      <div className="relative w-full h-full p-10 flex sm:hidden">
+      <div className="relative w-full h-[80vh] p-10 flex sm:hidden">
         <div className="relative w-full h-full">
           {data?.thumbnailUrl ? (
             <Image

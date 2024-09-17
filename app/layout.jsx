@@ -17,12 +17,14 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" className={inter.className}>
-      <body className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-        <header>
+      <body className="flex flex-col min-h-screen">
+        <header className="w-full">
           {!isLoginOrProfilePageOrWatchPage && <Navbar user={user?.name} />}
         </header>
-        <main>{children}</main>
-        <footer>{!isLoginOrProfilePageOrWatchPage && <Footer />}</footer>
+        <main className="flex-1 ">{children}</main>
+        <footer className="w-full">
+          {!isLoginOrProfilePageOrWatchPage && <Footer />}
+        </footer>
         <Analytics />
       </body>
     </html>
